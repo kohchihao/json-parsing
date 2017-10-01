@@ -2,6 +2,6 @@
 1) URL : <http://api.fixer.io/latest?symbols=MYR&base=SGD>
 2) Use http get to fetch the data. 
 3) Display the output as SGD1 = MYR3.1 
-
+4) Usage of external packages are allowed! 
 
 ### Before you contribute, please see [CONTRIBUTION GUIDE](https://github.com/kohchihao/json-parsing/blob/master/Contributing.md)
