@@ -1,5 +1,8 @@
-var fs = require('fs')
-var input = fs.readFileSync('example3.txt', 'utf-8')
+let fetch = require('isomorphic-fetch')
+fetch('http://api.fixer.io/latest?symbols=MYR&base=SGD').then((response) => {
+  if (response.ok) return response.text()
+  throw new Error('Network response was not ok')
+}).then((result) => console.log(JSON.stringify(basicParser(result), null, 2)))
 
 function objectParser (input) {
   if (input[0] !== '{') return null
@@ -27,7 +30,6 @@ function objectParser (input) {
     objPar[id] = result[0]
 
     input = result[1]
-    console.log(input)
 
     result = commaParser(input)
 
@@ -87,7 +89,7 @@ function numberParser (input) {
 
 function boolParser (input) {
   let spaceFound
-  //input = (spaceFound = spaceParser(input)) ? spaceFound[0] : input
+  input = (spaceFound = spaceParser(input)) ? spaceFound[0] : input
   if (input.slice(0, 4) === 'true') { return ([true, input.slice(4, input.length)]) } if (input.slice(0, 5) === 'false') { return ([false, input.slice(5, input.length)]) } return null
 }
 
@@ -142,4 +144,3 @@ function basicParser (input) {
   if (objectParser(input)) return objectParser(input)
   return null
 }
-console.log(JSON.stringify(basicParser(input), null, 2))
