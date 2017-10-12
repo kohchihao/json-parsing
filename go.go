@@ -38,5 +38,5 @@ func main() {
 
 	// Only reason to dereference here is to not print a '&' symbol before the contents of struct
 
-	fmt.Printf("%s 1 = %s %f\n", base, symbols, b.Rates.MYR)
+	fmt.Printf("%s1 = %s%0.1f\n", base, symbols, b.Rates.MYR)
 }
